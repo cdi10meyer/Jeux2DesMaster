@@ -13,9 +13,9 @@ namespace Jeu2Des
     /// A chaque lancer, si le total des dés est égal à 7 ==> le joueur marque 10 points à son score
     /// Une fois la partie terminée le nom du joeur et son score sont enregistrés dans le classement 
     /// </summary>   
-     public class Jeu
+    public class Jeu
     {
-       
+
         private Joueur _Joueur;
 
         /// <summary>
@@ -24,23 +24,24 @@ namespace Jeu2Des
         /// <returns>Le joueur de la partie ou null si aucune partie n'est démarrée</returns>        
         public Joueur Joueur
         {
-            get{return _Joueur;}       
+            get { return _Joueur; }
         }
-    
-        private De[] _Des = new De[2]; 
 
-        
+        private De[] _Des = new De[2];
+
+        private Classement Classement;
         /// <summary>
         /// Crée un jeu de 2 Dés avec un classement
         /// </summary> 
-       public Jeu()
+        public Jeu()
         {
 
             //A la création du jeu : les 2 dés sont crées 
             //On aurait pu créer les 2 Des juste au moment de jouer  
             _Des[0] = new De();
             _Des[1] = new De();
-            
+            Classement = new Classement();
+
         }
 
         /// <summary>
@@ -49,13 +50,14 @@ namespace Jeu2Des
         /// <param name="nom">Le nom du joueur</param>
         public void JouerPartie(string nom)
         {
-
             //Le joueur est créé quand la partie démarre
             _Joueur = new Joueur(nom);
 
             //On fait jouer le joueur en lui passant les 2 dés
             int resultat = _Joueur.Jouer(_Des);
-           
+            Entree entree = new Entree(_Joueur.Nom, resultat);
+            Classement.AjouterEntree(entree);
+
         }
 
         /// <summary>
@@ -64,14 +66,18 @@ namespace Jeu2Des
         /// </summary>        
         public void JouerPartie()
         {
+            JouerPartie(null);
 
-            //Le joueur est créé quand la partie démarre
-            _Joueur = new Joueur();
-
-            //Le joueur Joue et on récupère son score
-            int resultat = _Joueur.Jouer(_Des);
-            
         }
-        
+        public void VoirResultat()
+        {
+            Classement.TopN();
+        }
+
+        public void VoirResultat(int nombreLigne)
+        {
+            Classement.TopN(nombreLigne);
+        }
+
     }
 }

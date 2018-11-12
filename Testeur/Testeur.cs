@@ -16,7 +16,7 @@ namespace Testeur
         {
                        
             //Le jeu est crée (avec ses 2 des et son classement)
-            Jeu MonJeu = new Jeu();         
+            Jeu MonJeu = new Jeu();
 
             //Jouons quelques parties ....
             MonJeu.JouerPartie(); //1ere partie avec un joueur par défaut
@@ -25,8 +25,11 @@ namespace Testeur
             MonJeu.JouerPartie("David"); //Encore une partie  
             MonJeu.JouerPartie("Sarah"); //Encore une partie 
             MonJeu.JouerPartie("Lucie"); //Encore une partie
-            MonJeu.JouerPartie(); //Encore une partie 
-            
+            MonJeu.JouerPartie();//Encore une partie
+            Console.WriteLine();
+            MonJeu.VoirResultat();//Affichage du jeu entier
+            MonJeu.VoirResultat(3);//Affichage du top3
+
             Console.ReadKey();            
         }
     }

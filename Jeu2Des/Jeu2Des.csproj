@@ -54,7 +54,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classement.cs" />
     <Compile Include="De.cs" />
+    <Compile Include="Entree.cs" />
     <Compile Include="Jeu.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

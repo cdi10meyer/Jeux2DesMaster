@@ -48,8 +48,16 @@ namespace Jeu2Des
        
        public Joueur(string nom)
        {
-            _Nom = nom.ToUpper();
-            _Score = 0;
+            if (nom != null)
+            {
+                _Nom = nom.ToUpper();
+                _Score = 0;
+            }
+            else
+            {
+                _Nom = "Joueur" + _Compteur;
+                _Compteur++;
+            }
        }
 
         /// <summary>
@@ -58,7 +66,9 @@ namespace Jeu2Des
         /// </summary>
         /// <remarks></remarks>
         public Joueur() : this("Joueur" + _Compteur)
-        { _Compteur ++; }
+        {
+            _Compteur ++;
+        }
         
 
         /// <summary>

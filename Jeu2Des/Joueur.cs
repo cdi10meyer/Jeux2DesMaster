@@ -65,9 +65,8 @@ namespace Jeu2Des
         /// Le numero attribué est géré automatiquement 
         /// </summary>
         /// <remarks></remarks>
-        public Joueur() : this("Joueur" + _Compteur)
+        public Joueur() : this(null)
         {
-            _Compteur ++;
         }
         
 
@@ -101,7 +100,7 @@ namespace Jeu2Des
         /// <remarks></remarks>
         public override string ToString()
         {
-            return base.ToString() + " " + Nom + ", score= " + Score;
+            return  Nom + ", score= " + Score;
         }
     }
 }

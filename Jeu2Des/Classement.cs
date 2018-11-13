@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Jeu2Des
 {
+    [Serializable]
     public class Classement
     {
         public List<Entree> Entrees { get; private set; }
@@ -12,6 +16,10 @@ namespace Jeu2Des
         internal Classement()
         {
             Entrees = new List<Entree>();
+        }
+        internal Classement(List<Entree> entrees)
+        {
+            Entrees = entrees;
         }
 
         internal void AjouterEntree(Entree entree)
@@ -28,10 +36,9 @@ namespace Jeu2Des
             if (nbLigne > 0)
             {
                 this.Entrees.Sort();
-                this.Entrees.Reverse();
                 for(int i = 0; i< nbLigne;i++)
                 {
-                    Console.WriteLine($"Place N°{i+1} : {Entrees[i]}");
+                    Console.WriteLine($"N°{i+1} : {Entrees[i]}");
                 }
             }
             else
@@ -43,6 +50,47 @@ namespace Jeu2Des
         internal void TopN()
         {
             TopN(Entrees.Count());
+        }
+        internal void Save(string choix)
+        {
+            FabriqueClassement fabrique = new FabriqueClassement();
+            if(choix=="X")
+            {
+                ClassementXml newXml = fabrique.CreateClassementXml(this);
+                newXml.Save();
+                ClassementXml.ChoixXml = true;
+            }
+            else if(choix=="J")
+            {
+                ClassementJson newXml = fabrique.CreateClassementJson(this);
+                newXml.Save();
+                ClassementJson.ChoixJson = true;
+            }
+            else
+            {
+                ClassementBinaire newBinaire = fabrique.CreateClassementBinaire(this);
+                newBinaire.Save();
+                ClassementBinaire.ChoixBinaire = true;
+            }
+        }
+        public virtual Classement Load()
+        {
+            if(File.Exists("savXml.txt"))
+            {
+                ClassementXml newXml = new ClassementXml();
+                return newXml.Load();
+            }
+            else if (File.Exists("savBinaire.txt"))
+            {
+                ClassementBinaire newBinaire = new ClassementBinaire();
+                return newBinaire.Load();
+            }
+            else if (File.Exists("savJson.json"))
+            {
+                ClassementJson newJson = new ClassementJson();
+                return newJson.Load();
+            }
+            return new Classement();
         }
     }
 }

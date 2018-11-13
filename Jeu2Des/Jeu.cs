@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Jeu2Des;
@@ -15,6 +16,12 @@ namespace Jeu2Des
     /// </summary>   
     public class Jeu
     {
+        private static bool _Sauvegarde = File.Exists("savXml.txt")|| File.Exists("savBinaire.txt")|| File.Exists("savJson.json");
+        public static bool Sauvegarde
+        {
+            get { return _Sauvegarde; }
+            private set { _Sauvegarde = value; }
+        }
 
         private Joueur _Joueur;
 
@@ -33,16 +40,26 @@ namespace Jeu2Des
         /// <summary>
         /// Crée un jeu de 2 Dés avec un classement
         /// </summary> 
-        public Jeu()
+        /// 
+        public Jeu() : this(false)
         {
-
+        }
+       
+        public Jeu(bool load)
+        {
+            Classement = new Classement();
             //A la création du jeu : les 2 dés sont crées 
             //On aurait pu créer les 2 Des juste au moment de jouer  
             _Des[0] = new De();
             _Des[1] = new De();
-            Classement = new Classement();
+            if (load)
+            {
+                Classement = Classement.Load();
+            }
 
         }
+
+
 
         /// <summary>
         /// Permet de faire une partie du jeu de dés en indiquant le nom du joueur
@@ -78,6 +95,38 @@ namespace Jeu2Des
         {
             Classement.TopN(nombreLigne);
         }
+        #region Sérialization
 
+        public static void SupprimerSauvegarde(bool suppression)
+        {
+
+            if (suppression)
+            {
+                File.Delete("savXml.txt");
+                File.Delete("savBinaire.txt");
+                ClassementBinaire.ChoixBinaire = false;
+                ClassementXml.ChoixXml = false;
+                Sauvegarde = false;
+            }
+
+        }
+        public static void SupprimerSauvegarde()
+        {
+            SupprimerSauvegarde(true);
+
+        }
+        public void TerminerJeu(bool sauvegarde, string choix)
+        {
+            if (sauvegarde)
+            {
+                this.Classement.Save(choix);
+            }
+        }
+
+        public void TerminerJeu(string choix)
+        {
+            TerminerJeu(true, choix);
+        }
+        #endregion Sérialization
     }
 }

@@ -18,7 +18,12 @@ namespace PackageJeu
     public class Jeu
     {
         #region "Propriétés propre à la classe"
-        public static bool Sauvegarde { get; internal set; }
+        private static bool _Sauvegarde = File.Exists("savXml.txt") || File.Exists("savBinaire.txt") || File.Exists("savJson.json");
+        public static bool Sauvegarde
+        {
+            get { return _Sauvegarde; }
+            private set { _Sauvegarde = value; }
+        }
         #endregion "Propriétés propre à la classe"
 
         #region "Propriétés d'instance"

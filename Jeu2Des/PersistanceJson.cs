@@ -33,7 +33,6 @@ namespace PackagePersistant
             Object obj = serializer.ReadObject(fichier);
             fichier.Close();
             return (Classement)obj;
-
         }
 
         public void Save(Classement classement)

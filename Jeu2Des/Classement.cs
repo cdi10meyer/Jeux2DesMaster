@@ -65,11 +65,11 @@ namespace PackageClassement
         }
         internal void Save(string choix)
         {
-            StaticChoixPersistance.Save(choix, this);
+            StaticChoixPersistance.CreatePersistance(choix, this);
         }
         public virtual Classement Load()
         {
-            return StaticChoixPersistance.Load();
+            return StaticChoixPersistance.CreatePersistance().Load();
         }
         #endregion "Méthodes propres à la classe"
 

@@ -1,9 +1,10 @@
-﻿using PackageClassement;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using PackageClassement;
+using PackagePersistant;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
 
 namespace PackageJeu
 {
@@ -16,19 +17,12 @@ namespace PackageJeu
     /// </summary>   
     public class Jeu
     {
-        private static bool _Sauvegarde = File.Exists("savXml.txt")|| File.Exists("savBinaire.txt")|| File.Exists("savJson.json");
-        public static bool Sauvegarde
-        {
-            get { return _Sauvegarde; }
-            private set { _Sauvegarde = value; }
-        }
+        #region "Propriétés propre à la classe"
+        public static bool Sauvegarde { get; internal set; }
+        #endregion "Propriétés propre à la classe"
 
+        #region "Propriétés d'instance"
         private Joueur _Joueur;
-
-        /// <summary>
-        /// Représente le joueur courant (celui qui joue une partie)
-        /// </summary>
-        /// <returns>Le joueur de la partie ou null si aucune partie n'est démarrée</returns>        
         public Joueur Joueur
         {
             get { return _Joueur; }
@@ -37,19 +31,17 @@ namespace PackageJeu
         private De[] _Des = new De[2];
 
         private Classement Classement;
-        /// <summary>
-        /// Crée un jeu de 2 Dés avec un classement
-        /// </summary> 
-        /// 
+
+        #endregion "Propriétés d'instance"
+
+        #region "Constructeurs"
         public Jeu() : this(false)
         {
         }
-       
+
         public Jeu(bool load)
         {
             Classement = new Classement();
-            //A la création du jeu : les 2 dés sont crées 
-            //On aurait pu créer les 2 Des juste au moment de jouer  
             _Des[0] = new De();
             _Des[1] = new De();
             if (load)
@@ -58,13 +50,9 @@ namespace PackageJeu
             }
 
         }
+        #endregion "Constructeurs"
 
-
-
-        /// <summary>
-        /// Permet de faire une partie du jeu de dés en indiquant le nom du joueur
-        /// </summary>
-        /// <param name="nom">Le nom du joueur</param>
+        #region "Méthodes propres à la classe"
         public void JouerPartie(string nom)
         {
             //Le joueur est créé quand la partie démarre
@@ -80,7 +68,8 @@ namespace PackageJeu
         /// <summary>
         /// Permet de faire une partie du jeu de dés
         /// Le nom du joueur n'est pas donnée en entrée : il sera généré exemple : Joueur 1, Joueur 2, ...  
-        /// </summary>        
+        /// </summary>    
+
         public void JouerPartie()
         {
             JouerPartie(null);
@@ -95,27 +84,18 @@ namespace PackageJeu
         {
             Classement.TopN(nombreLigne);
         }
-        #region Sérialization
 
-        public static void SupprimerSauvegarde(bool suppression)
+        public static void Delete(bool suppression)
         {
-
             if (suppression)
             {
-                File.Delete("savXml.txt");
-                File.Delete("savBinaire.txt");
-                File.Delete("savJson.json");
-                ClassementBinaire.ChoixBinaire = false;
-                ClassementXml.ChoixXml = false;
-                ClassementJson.ChoixJson = false;
+                Classement.Delete();
                 Sauvegarde = false;
             }
-
         }
-        public static void SupprimerSauvegarde()
+        public static void Delete()
         {
-            SupprimerSauvegarde(true);
-
+            Delete(true);
         }
         public void TerminerJeu(bool sauvegarde, string choix)
         {
@@ -130,6 +110,10 @@ namespace PackageJeu
         {
             TerminerJeu(true, choix);
         }
-        #endregion Sérialization
+        #endregion "Méthodes propres à la classe"
     }
 }
+
+
+
+

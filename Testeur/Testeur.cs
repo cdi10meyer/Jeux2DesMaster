@@ -4,41 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 using PackageJeu;
 
 
@@ -97,7 +62,7 @@ namespace Testeur
                 Console.WriteLine("Voulez-vous supprimer la dernière sauvegarde? Press O pour oui");
                 key = Console.ReadKey().Key.ToString();
                 supprimer = key.ToUpper() == "O" ? true : false;
-                Jeu.SupprimerSauvegarde(supprimer);
+                Jeu.Delete(supprimer);
             }
 
 

@@ -56,12 +56,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classement.cs" />
-    <Compile Include="ClassementBinaire.cs" />
-    <Compile Include="ClassementJson.cs" />
-    <Compile Include="ClassementXml.cs" />
+    <Compile Include="IPersistant.cs" />
+    <Compile Include="PersistanceBinaire.cs" />
+    <Compile Include="PersistanceJson.cs" />
+    <Compile Include="PersistanceXml.cs" />
     <Compile Include="De.cs" />
     <Compile Include="Entree.cs" />
-    <Compile Include="FabriqueClassement.cs" />
+    <Compile Include="StaticChoixPersistance.cs" />
     <Compile Include="Jeu.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

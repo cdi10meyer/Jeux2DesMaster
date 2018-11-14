@@ -1,39 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PackageClassement;
+using System;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
 
-namespace PackageClassement
+namespace PackagePersistant
 {
-    [Serializable]
-    public class ClassementBinaire : Classement
+    public class PersistanceBinaire : IPersistant
     {
+
+        #region "Propriétés propre à la classe"
+
         internal static bool ChoixBinaire;
 
-        internal ClassementBinaire() : base()
+        #endregion "Propriétés propre à la classe"
+
+        #region "Constructeurs"
+        internal PersistanceBinaire()
         {
 
         }
-        internal ClassementBinaire(List<Entree> entrees) : base(entrees)
-        {
 
-        }
+        #endregion "Constructeurs"
 
-        internal void Save()
+        #region "Méthodes d'interface"
+
+        public void Save(Classement classement)
         {
-            File.Delete("savBinaire.txt");
             File.Delete("savXml.txt");
             File.Delete("savJson.json");
 
             Stream fichier = File.Create("savBinaire.txt");
             BinaryFormatter serializer = new BinaryFormatter();
-            serializer.Serialize(fichier, this);
+            serializer.Serialize(fichier, classement);
             fichier.Close();
             ChoixBinaire = true;
         }
-        public override Classement Load()
+
+        public Classement Load()
         {
             Stream fichier = File.OpenRead("savBinaire.txt");
             BinaryFormatter serializer = new BinaryFormatter();
@@ -41,5 +47,9 @@ namespace PackageClassement
             fichier.Close();
             return (Classement)obj;
         }
+        #endregion "Méthodes d'interface" 
+
     }
 }
+
+

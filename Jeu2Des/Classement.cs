@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Jeu2Des
+namespace PackageClassement
 {
     [Serializable]
+    [DataContract]
     public class Classement
     {
+        [DataMember]
         public List<Entree> Entrees { get; private set; }
 
         internal Classement()

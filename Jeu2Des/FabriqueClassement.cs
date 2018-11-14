@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jeu2Des
+namespace PackageClassement
 {
     public class FabriqueClassement
     {

@@ -4,7 +4,42 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using Jeu2Des;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using PackageJeu;
 
 
 namespace Testeur
@@ -15,7 +50,7 @@ namespace Testeur
         public static void Main(string[] args)
         {
             bool charger;
-            //bool supprimer;
+            bool supprimer;
             bool sauvegarder;
             string key;
             Jeu MonJeu;
@@ -37,7 +72,7 @@ namespace Testeur
             Console.WriteLine();
             MonJeu.VoirResultat();//Affichage du jeu entier
             Console.WriteLine();
-
+            Console.WriteLine("Jouons quelques parties....");
             Console.ReadKey();
             //Jouons quelques parties....
             MonJeu.JouerPartie(); //1ere partie avec un joueur par défaut
@@ -56,14 +91,14 @@ namespace Testeur
                 key = Console.ReadKey().Key.ToString();
                 MonJeu.TerminerJeu(key);
             }
-            
-            //if (Jeu.Sauvegarde)
-            //{
-            //    Console.WriteLine("Voulez-vous supprimer la dernière sauvegarde? Press O pour oui");
-            //    key = Console.ReadKey().Key.ToString();
-            //    supprimer = key.ToUpper() == "O" ? true : false;
-            //    Jeu.SupprimerSauvegarde(supprimer);
-            //}
+
+            if (Jeu.Sauvegarde)
+            {
+                Console.WriteLine("Voulez-vous supprimer la dernière sauvegarde? Press O pour oui");
+                key = Console.ReadKey().Key.ToString();
+                supprimer = key.ToUpper() == "O" ? true : false;
+                Jeu.SupprimerSauvegarde(supprimer);
+            }
 
 
             Console.ReadKey();            

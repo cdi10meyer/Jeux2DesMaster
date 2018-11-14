@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Serialization;
 
-namespace Jeu2Des
+namespace PackageClassement
 {
     [Serializable]
     public class ClassementXml : Classement

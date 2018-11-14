@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jeu2Des
+namespace PackageJeu
 {
      /// <summary>
      /// La classe De décrit le comportement d'un Dé à 6 faces

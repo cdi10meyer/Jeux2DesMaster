@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Jeu2Des
+namespace PackageJeu
 {
     /// <summary>
     /// Décrit un joueur du Jeu2Des

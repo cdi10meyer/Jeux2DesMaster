@@ -4,9 +4,12 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
+using PackageJeu;
 
-namespace Jeu2Des
+namespace PackageClassement
 {
+    [DataContract]
     public class ClassementJson : Classement
     {
         internal static bool ChoixJson;

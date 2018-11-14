@@ -1,11 +1,11 @@
-﻿using System;
+﻿using PackageClassement;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using Jeu2Des;
 
-namespace Jeu2Des
+namespace PackageJeu
 {
     /// <summary>
     /// La classe Jeu2Des décrit un jeu de Dés très simple. 
@@ -104,8 +104,10 @@ namespace Jeu2Des
             {
                 File.Delete("savXml.txt");
                 File.Delete("savBinaire.txt");
+                File.Delete("savJson.json");
                 ClassementBinaire.ChoixBinaire = false;
                 ClassementXml.ChoixXml = false;
+                ClassementJson.ChoixJson = false;
                 Sauvegarde = false;
             }
 
@@ -120,6 +122,7 @@ namespace Jeu2Des
             if (sauvegarde)
             {
                 this.Classement.Save(choix);
+                Sauvegarde = true;
             }
         }
 

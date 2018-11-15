@@ -69,18 +69,18 @@ namespace PackageClassement
 
         public static void Delete()
         {
-            StaticChoixPersistance.Delete();
+            StaticChoixPersistance<Classement>.Delete();
         }
 
         internal void Save(TypesPersistances type)
         {
-            IPersistant Persistance = StaticChoixPersistance.CreatePersistanceForSave(type);
+            IPersistant<Classement> Persistance = StaticChoixPersistance<Classement>.CreatePersistanceForSave(type);
             Persistance.Save(this);
         }
 
         internal Classement Load()
         {
-            return StaticChoixPersistance.CreatePersistanceForLoad().Load();
+            return StaticChoixPersistance<Classement>.CreatePersistanceForLoad().Load();
         }
 
         #endregion "Méthodes propres à la classe"

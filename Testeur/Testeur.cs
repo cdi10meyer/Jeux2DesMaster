@@ -18,6 +18,7 @@ namespace Testeur
             bool supprimer;
             bool sauvegarder;
             string key;
+            int key2;
             TypesPersistances type;
             Jeu MonJeu;
 
@@ -55,7 +56,31 @@ namespace Testeur
             if (sauvegarder)
             {
                 Console.WriteLine("En quel format? 1 pour Binaire, 2 pour Xml, 3 pour Json");
-                type = (TypesPersistances)Console.ReadKey().Key;
+                int Bowl; // Variable to hold number
+
+                ConsoleKeyInfo UserInput = Console.ReadKey(); // Get user input
+
+                // We check input for a Digit
+                if (char.IsDigit(UserInput.KeyChar))
+                {
+                    Bowl = int.Parse(UserInput.KeyChar.ToString()); // use Parse if it's a Digit
+                }
+                else
+                {
+                    Bowl = -1;  // Else we assign a default value
+                }
+                if(Bowl==(int)TypesPersistances.Json)
+                {
+                    type = TypesPersistances.Json;
+                }
+                else if(Bowl  == (int)TypesPersistances.Xml)
+                {
+                    type = TypesPersistances.Xml;
+                }
+                else
+                {
+                    type = TypesPersistances.Binaire;
+                }
                 MonJeu.TerminerJeu(type);
             }
             Console.WriteLine();

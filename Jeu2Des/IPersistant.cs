@@ -7,9 +7,9 @@ using PackageClassement;
 
 namespace PackagePersistant
 {
-    interface IPersistant
+    interface IPersistant<T>
     {
-        void Save(Classement classement);
-        Classement Load();
+        void Save(T t);
+        T Load();
     }
 }

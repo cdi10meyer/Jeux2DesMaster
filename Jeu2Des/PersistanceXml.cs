@@ -8,13 +8,8 @@ using System.Xml.Serialization;
 
 namespace PackagePersistant
 {
-    public class PersistanceXml : IPersistant
+    public class PersistanceXml<T> : IPersistant<T>
     {
-        #region "Propriétés propre à la classe"
-
-        internal static bool ChoixXml;
-
-        #endregion "Propriétés propre à la classe"
 
         #region "Constructeurs"
         internal PersistanceXml()
@@ -25,24 +20,23 @@ namespace PackagePersistant
         #endregion "Constructeurs"
 
         #region "Méthodes d'interface"
-        public Classement Load()
+        public T Load()
         {
             Stream fichier = File.OpenRead("savXml.txt");
-            XmlSerializer serializer = new XmlSerializer(typeof(Classement));
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
             Object obj = serializer.Deserialize(fichier);
             fichier.Close();
-            return (Classement)obj;
+            return (T)obj;
         }
 
-        public void Save(Classement classement)
+        public void Save(T t)
         {
             File.Delete("savBinaire.txt");
             File.Delete("savJson.json");
             Stream fichier = File.Create("savXml.txt");
-            XmlSerializer serializer = new XmlSerializer(classement.GetType());
-            serializer.Serialize(fichier, classement);
+            XmlSerializer serializer = new XmlSerializer(t.GetType());
+            serializer.Serialize(fichier, t);
             fichier.Close();
-            ChoixXml = true;
         }
 
         #endregion "Méthodes d'interface" 

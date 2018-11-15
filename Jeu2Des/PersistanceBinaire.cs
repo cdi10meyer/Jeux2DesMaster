@@ -8,14 +8,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 namespace PackagePersistant
 {
-    public class PersistanceBinaire : IPersistant
+    public class PersistanceBinaire<T> : IPersistant<T>
     {
-
-        #region "Propriétés propre à la classe"
-
-        internal static bool ChoixBinaire;
-
-        #endregion "Propriétés propre à la classe"
 
         #region "Constructeurs"
         internal PersistanceBinaire()
@@ -27,25 +21,24 @@ namespace PackagePersistant
 
         #region "Méthodes d'interface"
 
-        public void Save(Classement classement)
+        public void Save(T t)
         {
             File.Delete("savXml.txt");
             File.Delete("savJson.json");
 
             Stream fichier = File.Create("savBinaire.txt");
             BinaryFormatter serializer = new BinaryFormatter();
-            serializer.Serialize(fichier, classement);
+            serializer.Serialize(fichier, t);
             fichier.Close();
-            ChoixBinaire = true;
         }
 
-        public Classement Load()
+        public T Load()
         {
             Stream fichier = File.OpenRead("savBinaire.txt");
             BinaryFormatter serializer = new BinaryFormatter();
             Object obj = serializer.Deserialize(fichier);
             fichier.Close();
-            return (Classement)obj;
+            return (T)obj;
         }
         #endregion "Méthodes d'interface" 
 

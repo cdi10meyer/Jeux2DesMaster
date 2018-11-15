@@ -7,15 +7,15 @@ using System.IO;
 
 namespace PackagePersistant
 {
-    public static class StaticChoixPersistance
+    public static class StaticChoixPersistance<T>
     {
-        private static PersistanceXml newXml = new PersistanceXml();
-        private static PersistanceJson newJson = new PersistanceJson();
-        private static PersistanceBinaire newBinaire = new PersistanceBinaire();
+        private static PersistanceXml<T> newXml = new PersistanceXml<T>();
+        private static PersistanceJson<T> newJson = new PersistanceJson<T>();
+        private static PersistanceBinaire<T> newBinaire = new PersistanceBinaire<T>();
 
         #region "Méthodes static"
 
-        internal static IPersistant CreatePersistanceForLoad()
+        internal static IPersistant<T> CreatePersistanceForLoad()
         {
             if (File.Exists("savXml.txt"))
             {
@@ -32,23 +32,20 @@ namespace PackagePersistant
             return newBinaire;
         }
 
-        internal static IPersistant CreatePersistanceForSave(TypesPersistances type)
+        internal static IPersistant<T> CreatePersistanceForSave(TypesPersistances type)
         {
             if (type == TypesPersistances.Xml)
             {
-                PersistanceXml.ChoixXml = true;
                 return newXml;
                 
             }
             else if (type==TypesPersistances.Json)
             {
-                PersistanceJson.ChoixJson = true;
                 return newJson;
                 
             }
             else
             {
-                PersistanceBinaire.ChoixBinaire = true;
                 return newBinaire;
                 
             }
@@ -59,9 +56,6 @@ namespace PackagePersistant
             File.Delete("savXml.txt");
             File.Delete("savBinaire.txt");
             File.Delete("savJson.json");
-            PersistanceBinaire.ChoixBinaire = false;
-            PersistanceXml.ChoixXml = false;
-            PersistanceJson.ChoixJson = false;
         }
         #endregion "Méthodes static"
     }

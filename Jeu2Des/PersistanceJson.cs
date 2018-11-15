@@ -9,15 +9,9 @@ using System.Runtime.Serialization.Json;
 
 namespace PackagePersistant
 {
-    public class PersistanceJson : IPersistant
+    public class PersistanceJson<T> : IPersistant<T>
     {
-
-        #region "Propriétés propre à la classe"
-
-        internal static bool ChoixJson;
-
-        #endregion "Propriétés propre à la classe"
-
+        
         #region "Constructeurs"
         internal PersistanceJson()
         {
@@ -26,25 +20,24 @@ namespace PackagePersistant
         #endregion "Constructeurs"
 
         #region "Méthodes d'interface"
-        public Classement Load()
+        public T Load()
         {
             Stream fichier = File.OpenRead("savJson.json");
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Classement));
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
             Object obj = serializer.ReadObject(fichier);
             fichier.Close();
-            return (Classement)obj;
+            return (T)obj;
         }
 
-        public void Save(Classement classement)
+        public void Save(T t)
         {
             File.Delete("savBinaire.txt");
             File.Delete("savXml.txt");
 
             Stream fichier = File.Create("savJson.json");
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(classement.GetType());
-            serializer.WriteObject(fichier, classement);
+            DataContractJsonSerializer serializer = new DataContractJsonSerializer(t.GetType());
+            serializer.WriteObject(fichier, t);
             fichier.Close();
-            ChoixJson = true;
         }
 
         #endregion "Méthodes d'interface" 

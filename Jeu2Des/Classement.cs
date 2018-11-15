@@ -16,7 +16,7 @@ namespace PackageClassement
         #region "Propriétés d'instance"
         [DataMember]
         public List<Entree> Entrees { get; private set; }
-        
+
         #endregion "Propriétés d'instance"
 
         #region "Constructeurs"
@@ -65,22 +65,6 @@ namespace PackageClassement
         internal void TopN()
         {
             TopN(Entrees.Count());
-        }
-
-        public static void Delete()
-        {
-            StaticChoixPersistance<Classement>.Delete();
-        }
-
-        internal void Save(TypesPersistances type)
-        {
-            IPersistant<Classement> Persistance = StaticChoixPersistance<Classement>.CreatePersistanceForSave(type);
-            Persistance.Save(this);
-        }
-
-        internal Classement Load()
-        {
-            return StaticChoixPersistance<Classement>.CreatePersistanceForLoad().Load();
         }
 
         #endregion "Méthodes propres à la classe"

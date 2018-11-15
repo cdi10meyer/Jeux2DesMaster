@@ -51,7 +51,7 @@ namespace PackageJeu
             _Des[1] = new De();
             if (load)
             {
-                Classement = Classement.Load();
+                Classement = ChoixPersistance<Classement>.CreatePersistanceForLoad().Load();
             }
 
         }
@@ -95,7 +95,7 @@ namespace PackageJeu
         {
             if (suppression)
             {
-                Classement.Delete();
+                ChoixPersistance<Classement>.Delete();
                 Sauvegarde = false;
             }
         }
@@ -107,7 +107,8 @@ namespace PackageJeu
         {
             if (sauvegarde)
             {
-                this.Classement.Save(type);
+                IPersistant<Classement> Persistance = ChoixPersistance<Classement>.CreatePersistanceForSave(type);
+                Persistance.Save(this.Classement);
                 Sauvegarde = true;
             }
         }

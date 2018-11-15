@@ -62,7 +62,7 @@
     <Compile Include="PersistanceXml.cs" />
     <Compile Include="De.cs" />
     <Compile Include="Entree.cs" />
-    <Compile Include="StaticChoixPersistance.cs" />
+    <Compile Include="ChoixPersistance.cs" />
     <Compile Include="Jeu.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

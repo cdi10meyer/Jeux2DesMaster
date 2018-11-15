@@ -18,7 +18,6 @@ namespace Testeur
             bool supprimer;
             bool sauvegarder;
             string key;
-            int key2;
             TypesPersistances type;
             Jeu MonJeu;
 
@@ -91,8 +90,7 @@ namespace Testeur
                 supprimer = key.ToUpper() == "O" ? true : false;
                 Jeu.Delete(supprimer);
             }
-
-
+            
             Console.ReadKey();            
         }
     }

@@ -7,7 +7,7 @@ using System.IO;
 
 namespace PackagePersistant
 {
-    public static class StaticChoixPersistance<T>
+    public static class ChoixPersistance<T>
     {
         private static PersistanceXml<T> newXml = new PersistanceXml<T>();
         private static PersistanceJson<T> newJson = new PersistanceJson<T>();
@@ -34,20 +34,16 @@ namespace PackagePersistant
 
         internal static IPersistant<T> CreatePersistanceForSave(TypesPersistances type)
         {
-            if (type == TypesPersistances.Xml)
+            switch(type)
             {
-                return newXml;
-                
-            }
-            else if (type==TypesPersistances.Json)
-            {
-                return newJson;
-                
-            }
-            else
-            {
-                return newBinaire;
-                
+                case TypesPersistances.Xml:
+                    return newXml;
+                case TypesPersistances.Json:
+                    return newJson;
+                case TypesPersistances.Binaire:
+                    return newBinaire;
+                default:
+                    return newBinaire;
             }
         }
         

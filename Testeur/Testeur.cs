@@ -21,7 +21,7 @@ namespace Testeur
             Jeu MonJeu;
 
             Console.WriteLine(Jeu.Sauvegarde);
-            //Jeu.SupprimerSauvegarde();
+
             if (Jeu.Sauvegarde)
             {
                 Console.WriteLine("Voulez-vous charger la dernère partie sauvergardée? Press O pour oui");
@@ -50,13 +50,14 @@ namespace Testeur
             Console.WriteLine("Voulez-vous sauvegarder la partie? Press O pour oui");
             key = Console.ReadKey().Key.ToString();
             sauvegarder = key.ToUpper() == "O" ? true : false;
+            Console.WriteLine();
             if (sauvegarder)
             {
                 Console.WriteLine("En quel format? B pour Binaire, X pour Xml, J pour Json");
                 key = Console.ReadKey().Key.ToString();
                 MonJeu.TerminerJeu(key);
             }
-
+            Console.WriteLine();
             if (Jeu.Sauvegarde)
             {
                 Console.WriteLine("Voulez-vous supprimer la dernière sauvegarde? Press O pour oui");

@@ -15,7 +15,7 @@ namespace PackagePersistant
 
         #region "Méthodes static"
 
-        internal static IPersistant CreatePersistance()
+        internal static IPersistant CreatePersistanceForLoad()
         {
             if (File.Exists("savXml.txt"))
             {
@@ -32,22 +32,25 @@ namespace PackagePersistant
             return newBinaire;
         }
 
-        internal static void CreatePersistance(string choix, Classement classement)
+        internal static IPersistant CreatePersistanceForSave(string choix)
         {
             if (choix == "X")
             {
-                newXml.Save(classement);
                 PersistanceXml.ChoixXml = true;
+                return newXml;
+                
             }
             else if (choix == "J")
             {
-                newJson.Save(classement);
                 PersistanceJson.ChoixJson = true;
+                return newJson;
+                
             }
             else
             {
-                newBinaire.Save(classement);
                 PersistanceBinaire.ChoixBinaire = true;
+                return newBinaire;
+                
             }
         }
         

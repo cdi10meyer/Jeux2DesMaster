@@ -13,7 +13,7 @@ namespace PackageJeu
     /// Le jeu comprend 2 dés et un classement pour enregistrer les scores des joueur
     /// Quand un joueur fait une partie : il indique son nom puis il lance les 2 dés 10 fois de suite
     /// A chaque lancer, si le total des dés est égal à 7 ==> le joueur marque 10 points à son score
-    /// Une fois la partie terminée le nom du joeur et son score sont enregistrés dans le classement 
+    /// Une fois la partie terminée le nom du jouer et son score sont enregistrés dans le classement 
     /// </summary>   
     public class Jeu
     {
@@ -65,8 +65,9 @@ namespace PackageJeu
 
             //On fait jouer le joueur en lui passant les 2 dés
             int resultat = _Joueur.Jouer(_Des);
-            Entree entree = new Entree(_Joueur.Nom, resultat);
-            Classement.AjouterEntree(entree);
+
+            //On ajoute l'entree dans le classement
+            Classement.AjouterEntree(_Joueur.Nom, resultat);
 
         }
 

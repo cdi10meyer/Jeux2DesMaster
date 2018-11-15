@@ -16,8 +16,7 @@ namespace PackageClassement
         #region "Propriétés d'instance"
         [DataMember]
         public List<Entree> Entrees { get; private set; }
-
-        //public IPersistant MyProperty { get; set; }
+        
         #endregion "Propriétés d'instance"
 
         #region "Constructeurs"
@@ -32,14 +31,22 @@ namespace PackageClassement
         #endregion "Constructeurs"
 
         #region "Méthodes propres à la classe"
+
         internal void AjouterEntree(Entree entree)
         {
             Entrees.Add(entree);
         }
+
+        internal void AjouterEntree(string nom, int score)
+        {
+            Entree entree = new Entree(nom, score);
+            Entrees.Add(entree);
+        }
+
         internal void TopN(int n)
         {
             int nbLigne = n > Entrees.Count ? Entrees.Count : n;
-            Console.WriteLine(Environment.NewLine + $"TOP{nbLigne}");
+            Console.WriteLine($"TOP{nbLigne}");
 
             if (nbLigne > 0)
             {
@@ -59,18 +66,23 @@ namespace PackageClassement
         {
             TopN(Entrees.Count());
         }
+
         public static void Delete()
         {
             StaticChoixPersistance.Delete();
         }
+
         internal void Save(string choix)
         {
-            StaticChoixPersistance.CreatePersistance(choix, this);
+            IPersistant Persistance = StaticChoixPersistance.CreatePersistanceForSave(choix);
+            Persistance.Save(this);
         }
-        public virtual Classement Load()
+
+        internal Classement Load()
         {
-            return StaticChoixPersistance.CreatePersistance().Load();
+            return StaticChoixPersistance.CreatePersistanceForLoad().Load();
         }
+
         #endregion "Méthodes propres à la classe"
 
     }

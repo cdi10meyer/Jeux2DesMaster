@@ -72,9 +72,9 @@ namespace PackageClassement
             StaticChoixPersistance.Delete();
         }
 
-        internal void Save(string choix)
+        internal void Save(TypesPersistances type)
         {
-            IPersistant Persistance = StaticChoixPersistance.CreatePersistanceForSave(choix);
+            IPersistant Persistance = StaticChoixPersistance.CreatePersistanceForSave(type);
             Persistance.Save(this);
         }
 

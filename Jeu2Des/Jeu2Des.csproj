@@ -66,6 +66,7 @@
     <Compile Include="Jeu.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TypesPersistances.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Jeu2Des.snk" />

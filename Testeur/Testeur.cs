@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using PackageJeu;
-
+using PackagePersistant;
 
 namespace Testeur
 {
@@ -18,6 +18,7 @@ namespace Testeur
             bool supprimer;
             bool sauvegarder;
             string key;
+            TypesPersistances type;
             Jeu MonJeu;
 
             Console.WriteLine(Jeu.Sauvegarde);
@@ -53,9 +54,9 @@ namespace Testeur
             Console.WriteLine();
             if (sauvegarder)
             {
-                Console.WriteLine("En quel format? B pour Binaire, X pour Xml, J pour Json");
-                key = Console.ReadKey().Key.ToString();
-                MonJeu.TerminerJeu(key);
+                Console.WriteLine("En quel format? 1 pour Binaire, 2 pour Xml, 3 pour Json");
+                type = (TypesPersistances)Console.ReadKey().Key;
+                MonJeu.TerminerJeu(type);
             }
             Console.WriteLine();
             if (Jeu.Sauvegarde)

@@ -103,18 +103,18 @@ namespace PackageJeu
         {
             Delete(true);
         }
-        public void TerminerJeu(bool sauvegarde, string choix)
+        public void TerminerJeu(bool sauvegarde, TypesPersistances type)
         {
             if (sauvegarde)
             {
-                this.Classement.Save(choix);
+                this.Classement.Save(type);
                 Sauvegarde = true;
             }
         }
 
-        public void TerminerJeu(string choix)
+        public void TerminerJeu(TypesPersistances type)
         {
-            TerminerJeu(true, choix);
+            TerminerJeu(true, type);
         }
         #endregion "Méthodes propres à la classe"
     }

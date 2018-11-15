@@ -32,15 +32,15 @@ namespace PackagePersistant
             return newBinaire;
         }
 
-        internal static IPersistant CreatePersistanceForSave(string choix)
+        internal static IPersistant CreatePersistanceForSave(TypesPersistances type)
         {
-            if (choix == "X")
+            if (type == TypesPersistances.Xml)
             {
                 PersistanceXml.ChoixXml = true;
                 return newXml;
                 
             }
-            else if (choix == "J")
+            else if (type==TypesPersistances.Json)
             {
                 PersistanceJson.ChoixJson = true;
                 return newJson;

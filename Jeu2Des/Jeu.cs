@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using PackageClassement;
-using PackagePersistant;
+using PackagePersistance;
 //using System;
 //using System.Collections.Generic;
 //using System.Linq;
@@ -18,7 +18,7 @@ namespace PackageJeu
     public class Jeu
     {
         #region "Propriétés propre à la classe"
-        private static bool _Sauvegarde = File.Exists("savXml.txt") || File.Exists("savBinaire.txt") || File.Exists("savJson.json");
+        private static bool _Sauvegarde = File.Exists(ChoixPersistance<Classement>.Xml) || File.Exists(ChoixPersistance<Classement>.Bin) || File.Exists(ChoixPersistance<Classement>.Json);
         public static bool Sauvegarde
         {
             get { return _Sauvegarde; }
@@ -51,7 +51,20 @@ namespace PackageJeu
             _Des[1] = new De();
             if (load)
             {
-                Classement = ChoixPersistance<Classement>.CreatePersistanceForLoad().Load();
+                TypesPersistances type;
+                if (File.Exists(ChoixPersistance<Classement>.Xml))
+                {
+                    type = TypesPersistances.Xml;
+                }
+                else if (File.Exists(ChoixPersistance<Classement>.Json))
+                {
+                    type = TypesPersistances.Json;
+                }
+                else
+                {
+                    type = TypesPersistances.Binaire;
+                }
+                Classement = ChoixPersistance<Classement>.CreatePersistance(type).Load();
             }
 
         }
@@ -103,11 +116,11 @@ namespace PackageJeu
         {
             Delete(true);
         }
-        public void TerminerJeu(bool sauvegarde, TypesPersistances type)
+        public void TerminerJeu(bool sauvegarde,TypesPersistances type)
         {
             if (sauvegarde)
             {
-                IPersistant<Classement> Persistance = ChoixPersistance<Classement>.CreatePersistanceForSave(type);
+                IPersistant<Classement> Persistance = ChoixPersistance<Classement>.CreatePersistance(type);
                 Persistance.Save(this.Classement);
                 Sauvegarde = true;
             }

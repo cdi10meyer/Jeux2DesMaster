@@ -1,26 +1,37 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jeu2Des", "Jeu2Des\Jeu2Des.csproj", "{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testeur", "Testeur\Testeur.csproj", "{D27EE305-238B-4593-BAA0-4BE3873B0D72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Debug|x86.ActiveCfg = Debug|x86
 		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Debug|x86.Build.0 = Debug|x86
+		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Release|Any CPU.ActiveCfg = Release|x86
 		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Release|x86.ActiveCfg = Release|x86
 		{2337A14D-1EDF-46FF-808B-41F2F9DC27BE}.Release|x86.Build.0 = Release|x86
+		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Debug|x86.ActiveCfg = Debug|x86
 		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Debug|x86.Build.0 = Debug|x86
+		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Release|Any CPU.ActiveCfg = Release|x86
 		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Release|x86.ActiveCfg = Release|x86
 		{D27EE305-238B-4593-BAA0-4BE3873B0D72}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CA45582-5F2B-4771-88E7-499C33F82BF9}
 	EndGlobalSection
 EndGlobal
